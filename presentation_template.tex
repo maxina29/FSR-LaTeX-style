@@ -1,0 +1,68 @@
+\documentclass[13pt,hyperref={unicode,naturalnames}]{beamer}
+\usepackage{fsr}
+
+\makeatletter
+\def\fsr@institute{Факультет космических исследований\\
+  Московский Государственный Университет им. М.В. Ломоносова}
+\def\fsr@instituteshort{ФКИ}
+\def\fsr@subject{Предмет}
+\def\fsr@semestr{0}
+\def\fsr@lector{Иванов И.\,И.}
+\def\fsr@texedby{А.\,А.~Петров\inst{1}, Б.\,Б.~Сидоров\inst{1}}
+\def\fsr@texedbyshort{Петров, Сидоров}
+\def\fsr@title{Заголовок}
+\def\fsr@subtitle{Подзаголовок}
+\def\fsr@date{Предмет, январь 2000\,г.}
+\def\fsr@shortdate{2000}
+% \def\enabletransfer{\true} % разрешить автоперенос без дублирования после всех знаков операций в формулах
+\def\standartmargins{\true} % стандартный размер полей
+\def\presentation{\true}
+\def\numeration{\true} % включить нумерацию страниц (или шапку презентации)
+% \def\standartfont{\true} % вернуть стандартный шрифт вместо виноградовского
+\fsrinitialize
+\makeatother
+
+\begin{document}
+\frame{\titlepage}
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{Содержание}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+\section{Раздел 1}
+%---------------------------------------------------------
+\begin{frame}{Слайд 1}
+    Текст до паузы\\
+    \pause
+    Текст после паузы
+\end{frame}
+%---------------------------------------------------------
+\section{Раздел 2}
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{Слайд 1}
+Важный текст можно
+\alert{выделить}.
+\begin{block}{Ремарка}
+Текст
+\end{block}
+\begin{alertblock}{Важная штука}
+Обычно красная, но не здесь
+\end{alertblock}
+\begin{exampleblock}{Примеры}
+Ееее
+\end{exampleblock}
+\end{frame}
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{Слайд на 2 колонки}
+\begin{columns}
+\column{0.5\textwidth}
+Текст в 1 колонке.
+$$E=mc^2$$
+\column{0.5\textwidth}
+Текст во 2 колонке.
+\end{columns}
+\end{frame}
+\end{document}

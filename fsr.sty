@@ -1,0 +1,553 @@
+% FSR STYLE 12/03/2021 14:45
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+% \usepackage[svgnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{wrapfig}
+\usepackage{asymptote}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{000000}
+
+\hypersetup{pdfstartview=FitH, linkcolor=linkcolor,
+urlcolor=urlcolor, colorlinks=true}
+
+\def\fsr@institute{ФКИ МГУ}
+\def\fsr@separator{, }
+\def\fsr@subject{Предмет}
+\def\fsr@semestr@text{семестр: }
+\def\fsr@semestr@text@var{ семестр}
+\def\fsr@semestr{0}
+\def\fsr@lector@text{Лектор: }
+\def\fsr@lector{Иванов И.\,И.}
+\def\fsr@texedby@text{\TeX ed by }
+\def\fsr@texedby{$\nothing$}
+\let\fsr@title\relax
+\let\fsr@date\relax
+\def\fsr@lection@text{Лекция }
+\def\fsr@lectnum{0}
+
+\def\hhline{\noindent\rule{\textwidth}{0.5pt}}
+
+\def\standart{0}
+\def\lection{1}
+\def\pgas{2}
+\def\headertype{0}
+
+\def\fsrheader{
+    \ifx\headertype\standart
+    {
+        \noindent
+        {
+            \large \sffamily \bfseries
+            \fsr@institute \fsr@separator \fsr@subject
+        }
+        \hfill
+        {
+            \small \sffamily
+            \fsr@semestr@text \fsr@semestr
+        }
+        \hfill
+        {
+            \small \sffamily \scshape
+            \fsr@lector@text \fsr@lector
+        }
+        \nopagebreak \\
+        {
+            \small \ttfamily
+            \fsr@texedby@text \fsr@texedby
+        }
+        % \nopagebreak \\[-4pt]
+        % \vphantom{.}\hrulefill\vphantom{.} \\[4pt]
+        \\[-4pt]\hhline\\[4pt]
+        {
+            \Large \bfseries
+            \fsr@title
+        }
+        \hfill
+        {
+            \large \sffamily \itshape
+            \fsr@date        
+        }\par
+    }
+    \else
+        \if\headertype\lection
+        {
+            \small\rmfamily
+    		{\normalsize
+    		    \centering{
+    		        {
+    		            \fsr@subject
+    		        }
+    		        \\
+    			    \textsc
+    			    {
+    			        \fsr@lector@text \fsr@lector
+    			    }
+    		    }
+    		    \\
+    			{
+    			    \fsr@texedby@text\fsr@texedby
+    			}
+    			\hfill\textit
+    			{
+    			    \fsr@institute \fsr@separator
+    			    \fsr@semestr \fsr@semestr@text@var 
+    			}  
+    		}
+    		% \nopagebreak \\[-4pt]
+            % \vphantom{.}\hrulefill\vphantom{.} \\[4pt]
+            \\[-4pt]\hhline\\[4pt]
+            {
+                \scshape
+                \fsr@lection@text \fsr@lectnum
+            }
+            \hfill
+            {
+                \sffamily \itshape
+                \fsr@date        
+            }
+            \\
+            \centering{
+                \large \scshape
+                \fsr@title
+            }\par
+        }
+        \else
+        {
+            \par
+            \small\sffamily
+			{
+			    \normalsize\centering
+			    {
+			        \ttfamily \fsr@subject \rmfamily\\
+				    \hfill\scshape \fsr@institute \upshape\hfill \hphantom{}\\[-0.7em]
+			    }
+			}
+            \hhline
+            % \vspace{-7px}
+            {
+                \large\sffamily
+                \hphantom{}\hfill\textit{\fsr@date}\\
+            }
+            {
+                \centering
+                {
+                    \Large
+                    \textsc{\fsr@title}
+                }
+                \\[-1em]
+            }
+            % \strut \nopagebreak \rmfamily \normalsize
+        }
+        \fi
+    \fi
+}
+
+
+\newcommand\header[1]
+{   
+    \if\headertype\lection
+	{
+    	\par \begingroup \normalsize
+    	\strut
+    	{
+    	    \centering
+    	    {
+    	        \large 
+    	        \textsc{#1}
+    	    }
+    	    \\[-1em]
+    	}
+    	\strut \nopagebreak
+    	\endgroup
+    }
+    \else
+    {
+        \if\headertype\lection
+        {
+            \par \begingroup \normalsize
+        	\strut
+            {
+                \Large \bfseries
+                #1
+            }
+            \strut \nopagebreak
+        	\endgroup
+        }
+        \else
+        {
+            \par
+            {
+                \centering
+                {
+                    \Large\textsc{#1}
+                }
+                \\[-1em]
+            }
+            \strut \nopagebreak
+        }
+        \fi
+    }
+    \fi
+}
+
+\newcommand\subheader[1]{
+	%\par
+	\vspace{2ex}
+	%\hhline
+	%\n
+    % 	\begingroup
+    \large
+        % \strut
+	{
+	    \centering\textit{#1}\\[1ex]
+	}
+    % 	\strut
+    % \nopagebreak % \\[-3ex]
+	%\rule[1ex]{\textwidth}{0.5pt}
+    % 	\endgroup
+% 	\@nobreaktrue%\par
+	\normalsize
+}
+
+\newlength\@kratno@height
+\newcommand\@kratno@template[2]{\setlength{\@kratno@height}{#2pt}%
+\mathrel{%
+    \rlap{\raisebox{-0.25\@kratno@height}{$\mathsurround=0pt#1\cdot$}}%
+    \rlap{\raisebox{ 0.05\@kratno@height}{$\mathsurround=0pt#1\cdot$}}%
+          \raisebox{ 0.35\@kratno@height}{$\mathsurround=0pt#1\cdot$}%
+    }}
+\newcommand\kratno{\mathchoice%
+    {\@kratno@template{\displaystyle}{\tf@size}}%
+    {\@kratno@template{\textstyle}{\tf@size}}%
+    {\@kratno@template{\scriptstyle}{\sf@size}}%
+    {\@kratno@template{\scriptscriptstyle}{\ssf@size}}%
+}
+\newcommand\nkratno{\mathrel{\not{\kratno}}}
+
+\newcommand\swapvar[2][]{\begingroup
+\expandafter\let\expandafter\swap\csname #1#2\endcsname
+\expandafter\let\expandafter\varswap\csname #1var#2\endcsname
+\global\expandafter\let\csname #1#2\endcsname\varswap
+\global\expandafter\let\csname #1var#2\endcsname\swap
+\endgroup}
+
+\newcounter{glava}
+\newcounter{theor}[glava]
+\newcounter{lemma}[glava]
+\newcounter{defin}[glava]
+\newcounter{propos}[glava]
+\newcounter{stat}[glava]
+\newcounter{notee}[stat]
+\newcounter{core}[stat]
+\newcounter{xcae}[glava]
+
+\def\n{\par}
+
+\def\true{1}
+\def\false{0}
+\def\enabletransfer{\false}
+\def\standartmargins{\false}
+\def\numeration{\false}
+\def\standartfont{\false}
+\def\presentation{\false}
+	
+\def\fsrinitialize{
+    \if\presentation\false
+    {
+        \AtBeginDocument{\parskip=3.5ex \@plus 1ex \@minus .2ex}
+        % \usepackage[dvipsnames]{xcolor}
+        \newcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+        \newenvironment{Theorem}{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor}. }}}{\par}
+        \newenvironment{Lemma}{\n\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma}. }}}{\par}
+        \newenvironment{Definition}{\n\stepcounter{stat}\addtocounter{defin}{1}\textbf{{Определение \arabic{defin}. }}}{\par}
+        \newenvironment{Example}{\n\textbf{{Пример. }}}{\par}
+        % \newenvironment{proof}{\n\textsc{Доказательство.}}{\hspace{\stretch{1}}\qedsymbol\n}
+        \newenvironment{proof}{\n\textsc{Доказательство. }}{\hspace{\stretch{1}}\qedsymbol\par}
+        \newenvironment{solution}{\n\textsc{Решение.}}{\hspace{\stretch{1}}\qedsymbol\n}
+        \newenvironment{example}{\n\textsc{Пример.}}{\hspace{\stretch{1}}%\qedsymbol
+        \n}
+        \newenvironment{note}{\n\addtocounter{notee}{1}\textbf{{Замечание \arabic{notee}. }}}{\par}
+    }
+    \else
+    {
+        \AtBeginDocument{
+        \usetheme{Warsaw}
+        \usecolortheme{wolverine}
+        \title{\fsr@title}
+        \author[\fsr@texedbyshort]{\fsr@texedby}
+        \subtitle{\fsr@subtitle}
+        \institute[\fsr@instituteshort]{\inst{1}\fsr@institute}
+        \date[\fsr@shortdate]{\fsr@date}
+        \logo{\includegraphics[height=2cm]{FSR_Logo_012.png}}
+        \AtBeginSection[]
+        {
+          \begin{frame}
+            \frametitle{Содержание}
+            \tableofcontents[currentsection]
+          \end{frame}
+        }
+        }
+    }
+    \fi
+    \if\enabletransfer\false
+        \binoppenalty=10000
+        \relpenalty=10000
+    \else
+    {
+        \let\true=\true
+    }
+    \fi
+    \if\standartmargins\false
+        \geometry{a5paper,portrait,vmargin={2em,2em},hmargin={2em,2em}}
+    \else
+    {}
+    \fi
+    \if\numeration\false
+        \pagestyle{empty}
+    \else
+    {}
+    \fi
+    \if\standartfont\false
+        \usepackage[charter]{mathdesign}
+        \usepackage{XCharter}
+    \else
+        \usepackage{amssymb}
+        \usepackage{amsfonts}
+    \fi
+}
+
+
+% \newenvironment{cor}[1][0pt]{\n\hspace{#1}\addtocounter{core}{1}\textbf{{Следствие \arabic{core}. }}}{\par}
+% \newenvironment{defn}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{defin}{1}\textbf{{Определение \arabic{defin}. }}}{\par}
+% \newenvironment{Theorem}{\n\stepcounter{stat}\addtocounter{theor}{1}{Теорема \arabic{theor}. }}{\n}
+% \newenvironment{Theorem*}{\n\stepcounter{stat}\addtocounter{theor}{1}{Теорема \arabic{theor}*. }}{\n}
+% \newenvironment{namedTheorem}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}{Теорема \arabic{theor}. }\textit{(#1).}}{\n}
+% \newenvironment{Lemma}{\n\stepcounter{stat}\addtocounter{lemma}{1}{Лемма \arabic{lemma}.}}{\n}
+% \newenvironment{Definition}{\n\stepcounter{stat}\addtocounter{defin}{1}{Определение \arabic{defin}.}}{\n}
+% \newenvironment{Proposition}{\n\stepcounter{stat}\addtocounter{propos}{1}{Утверждение \arabic{propos}.}}{\n}
+% \newenvironment{Note}{\n\addtocounter{notee}{1}{Замечание \arabic{notee}.}}{\n}
+% \newenvironment{Corallery}{\n\addtocounter{core}{1}{Следствие \arabic{core}.}}{\n}
+% \newenvironment{Corallery*}{\n\addtocounter{core}{1}{Следствие \arabic{core}.}}{\n}
+% \newenvironment{Example}{\n\textsc{Пример.}}{\n}
+% \newenvironment{Excersise}{\n\stepcounter{stat}\addtocounter{xcae}{1}\textsc{Упражнение \arabic{xcae}.}}{\n}
+
+
+\newenvironment{Theorem*}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{{(б/д). }}}{\par}
+\newenvironment{namedTheorem}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{(#1). }}{\par}
+\newenvironment{namedTheorem*}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{(#1) \textit{\texttt{(б/д). }}}}{\par}
+
+\newenvironment{namedLemma}[1][]{\n\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{(#1). }}{\par}
+\newenvironment{Lemma*}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{{(б/д). }}}{\par}
+
+\newenvironment{Proposition}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{propos}{1}\textbf{{Утверждение \arabic{propos}. }}}{\par}
+\newenvironment{namedProposition}[1][]{\n\stepcounter{stat}\addtocounter{propos}{1}\textbf{{Утверждение \arabic{propos} }}\textit{(#1). }}{\par}
+\newenvironment{Note}[1][0pt]{\n\hspace{#1}\addtocounter{notee}{1}\textbf{{Замечание \arabic{notee}. }}}{\par}
+\newenvironment{Note*}[1][0pt]{\n\hspace{#1}\addtocounter{notee}{1}\textbf{{Замечание \arabic{notee} }}\textit{{(б/д). }}}{\par}
+\newenvironment{Corallery}[1][0pt]{\n\hspace{#1}\addtocounter{core}{1}\textbf{{Следствие \arabic{core}. }}}{\par}
+\newenvironment{namedCorallery}[1][]{\n\addtocounter{core}{1}\textbf{{Следствие \arabic{core} }}\textit{(#1). }}{\par}
+\newenvironment{Corallery*}[1][0pt]{\n\hspace{#1}\addtocounter{core}{1}\textbf{{Следствие \arabic{core}. }}}{\par}
+
+\newenvironment{Excersise}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{xcae}{1}\textbf{{Упражнение \arabic{xcae}. }}}{\par}
+
+
+
+\newenvironment{solution*}{\n\textsc{Решение.}}{\n}
+
+\newenvironment{hint}{\n\textsc{Указание.}}{\n}
+
+\newcounter{biletik}
+\newcounter{voprosik}[biletik]
+\newenvironment{bilet}{\bigskip\hfill\addtocounter{biletik}{1}\setcounter{voprosik}{0}\Large\textbf{{ Билет \arabic{biletik}.}}\hfill\normalsize}{}
+\newenvironment{vopros}{\par\addtocounter{voprosik}{1}\large\textbf{{\arabic{voprosik}.}}\normalsize}{\upshape\par}
+
+\newenvironment{answer}{\n\textsc{{Ответ.}}}{\n}
+\newenvironment{idea}{\n\textsc{{Идея.}}}{\n}
+
+\newcounter{task}%[section]
+\def\zero{0}\def\two{2}\def\three{3}\def\four{4}
+\definecolor{Mycolor1}{HTML}{AC8300}
+\definecolor{LavandaForLavruha}{HTML}{9797E8}
+\definecolor{Gay}{HTML}{0F93FF}
+\newcommand{\MyColor}[1]{\def\pertask{#1}\ifx\pertask\zero\color{Red}\else\ifx\pertask\two\color{Mycolor1}\else\ifx\pertask\three\color{LavandaForLavruha}\else\ifx\pertask\four\color{Gay}\else\color{ForestGreen}\fi\fi\fi\fi}
+\newenvironment{task}[1][0]{\large\n\addtocounter{task}{1}\textbf{{\arabic{task}. }}\MyColor{#1}}{\rmfamily\par}
+\newenvironment{hardtask}[1][0]{\large\n\addtocounter{task}{1}\textbf{{\arabic{task}${}^*$. }}\MyColor{#1}}{\upshape\par}
+\newenvironment{easytask}[1][0]{\large\n\addtocounter{task}{1}\textbf{{\arabic{task}${}^\circ$. }}\MyColor{#1}}{\upshape\par}
+
+\newenvironment{thm}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor}. }}}{\par}
+\newenvironment{thm*}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{{(б/д). }}}{\par}
+\newenvironment{nthm}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{(#1). }}{\par}
+\newenvironment{nthm*}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{(#1) \textit{\texttt{(б/д). }}}}{\par}
+\newenvironment{lem}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma}. }}}{\par}
+\newenvironment{nlem}[1][]{\n\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{(#1). }}{\par}
+\newenvironment{lem*}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{{(б/д). }}}{\par}
+\newenvironment{defn}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{defin}{1}\textbf{{Определение \arabic{defin}. }}}{\par}
+\newenvironment{prop}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{propos}{1}\textbf{{Утверждение \arabic{propos}. }}}{\par}
+\newenvironment{nprop}[1][]{\n\stepcounter{stat}\addtocounter{propos}{1}\textbf{{Утверждение \arabic{propos} }}\textit{(#1). }}{\par}
+
+\newenvironment{note*}[1][0pt]{\n\hspace{#1}\addtocounter{notee}{1}\textbf{{Замечание \arabic{notee} }}\textit{{(б/д). }}}{\par}
+\newenvironment{cor}[1][0pt]{\n\hspace{#1}\addtocounter{core}{1}\textbf{{Следствие \arabic{core}. }}}{\par}
+\newenvironment{ncor}[1][]{\n\addtocounter{core}{1}\textbf{{Следствие \arabic{core} }}\textit{(#1). }}{\par}
+\newenvironment{cor*}[1][0pt]{\n\hspace{#1}\addtocounter{core}{1}\textbf{{Следствие \arabic{core}. }}}{\par}
+\newenvironment{exmp}[1][0pt]{\n\hspace{#1}\textbf{{Пример. }}}{\par}
+\newenvironment{xca}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{xcae}{1}\textbf{{Упражнение \arabic{xcae}. }}}{\par}
+
+\newenvironment{props}[1][0pt]{\n\hspace{#1}\textbf{{Свойства. }}\begin{enumerate}[label=\arabic*)]}{\end{enumerate}\par}
+\newenvironment{hyps}[1][0pt]{\n\hspace{#1}\textbf{Гипотезы: }\vspace{-10px}\begin{enumerate}[label=\arabic*)]}{\end{enumerate}\par}
+\newenvironment{nprops}[1][]{\n\textbf{{Свойства }}\textit{(#1).}\begin{enumerate}[label=\arabic*)]}{\end{enumerate}\par}
+\newenvironment{props*}[1][0pt]{\n\hspace{#1}\textbf{{Свойства }}\textit{\texttt{(б/д). }}\begin{enumerate}[label=\arabic*)]}{\end{enumerate}\par}
+
+\newenvironment{proof*}[1][0pt]{\n\hspace{#1}\textsc{Доказательство }}{\hspace{\stretch{1}}\par}
+\newenvironment{proof.*}[1][0pt]{\n\hspace{#1}\textsc{Доказательство. }}{\hspace{\stretch{1}}\par}
+\newenvironment{proof.*nopar}[1][0pt]{\n\hspace{#1}\textsc{Доказательство. }}{\hspace{\stretch{1}}}
+\newenvironment{proofof}[1][]{\n\textsc{Доказательство #1. }}{\hspace{\stretch{1}}\qedsymbol\par}
+\newenvironment{proofs*}[1][0pt]{\n\hspace{#1}\textsc{Доказательства }}{\hspace{\stretch{1}}\par}
+\newenvironment{noproof}[1][0pt]{\n\hspace{#1}\textsc{Без доказательства. }}{\par}
+\newcommand{\va}[1]{\langle#1\rangle}
+\newcommand{\case}[1]{\begin{cases}#1\end{cases}}
+%\renewcommand{\*}[1]{\,\textasteriskcentered\,}
+% \newenvironment{solution}[1][0pt]{\n\hspace{#1}\textsc{Решение. }}{\hspace{\stretch{1}}\qedsymbol\par}
+% \newenvironment{answer}[1][0pt]{\n\hspace{#1}\textsc{Ответ. }}{\par}
+
+%\newtheorem{thm}{Теорема}
+%\newtheorem{lem}{Лемма}
+%\newtheorem{defn}{Определение}
+%\newtheorem{prop}{Утверждение}
+%\newtheorem*{note}{Замечание}
+%\newtheorem*{cor*}{Следствие}
+%\newtheorem{cor}{Следствие}
+%\newtheorem*{exmp}{Пример}
+%\newtheorem{xca}{Упражнение}
+
+\parindent=0cm
+
+
+\tolerance=400
+
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}} % Перенос знаков в формулах (по Львовскому)
+
+
+\newcommand{\intl}{\mathop{\int}\limits}
+\newcommand{\liml}{\mathop{\lim}\limits}
+\newcommand{\suml}{\mathop{\sum}\limits}
+\newcommand{\supl}{\mathop{\sup}\limits}
+\newcommand{\infl}{\mathop{\inf}\limits}
+\newcommand{\longrightarrowl}{\mathop{\longrightarrow}\limits}
+
+\newcommand{\Bo}{{\raisebox{0.2ex}{$\stackrel{\circ}{B}$}}{}}
+\newcommand{\Uo}{{\raisebox{0.2ex}{$\stackrel{\circ}{U}$}}{}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\def\N{{\mathbb N}}
+\def\Z{{\mathbb Z}}
+\def\R{{\mathbb R}}
+\def\Q{{\mathbb Q}}
+\def\C{{\mathbb C}}
+\def\O{{\mathrm O}}
+\newcommand{\degree}{\ensuremath{^\circ}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+	\edef\arraystretch{#1}%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{*\c@MaxMatrixCols c}}
+
+\newcommand\incircbin
+{%
+	\mathpalette\@incircbin
+}
+\newcommand\@incircbin[2]
+{%
+	\mathbin%
+	{%
+		\ooalign{\hidewidth$#1#2$\hidewidth\crcr$#1\bigcirc$}%
+	}%
+}
+\newcommand{\oeq}{\incircbin{=}}
+
+\newcommand*{\relrelbarsep}{.386ex}
+\newcommand*{\relrelbar}{%
+  \mathrel{%
+    \mathpalette\@relrelbar\relrelbarsep
+  }%
+}
+\newcommand*{\@relrelbar}[2]{%
+  \raise#2\hbox to 0pt{$\m@th#1\relbar$\hss}%
+  \lower#2\hbox{$\m@th#1\relbar$}%
+}
+\providecommand*{\rightrightarrowsfill@}{%
+  \arrowfill@\relrelbar\relrelbar\rightrightarrows
+}
+\providecommand*{\leftleftarrowsfill@}{%
+  \arrowfill@\leftleftarrows\relrelbar\relrelbar
+}
+\providecommand*{\xrightrightarrows}[2][]{%
+  \ext@arrow 0359\rightrightarrowsfill@{#1}{#2}%
+}
+\providecommand*{\xleftleftarrows}[2][]{%
+  \ext@arrow 3095\leftleftarrowsfill@{#1}{#2}%
+}
+\def\overbrace#1{\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
+      \downbracefill\crcr\noalign{\kern3\p@\nointerlineskip}%
+      $\hfil{#1}\hfil$\crcr}}}\limits}
+\def\underbrace#1{\mathop{\vtop{\ialign{##\crcr
+  \normalsize$\hfil{#1}\hfil$\crcr
+  \noalign{\kern3\p@\nointerlineskip}%
+  \upbracefill\crcr\noalign{\kern3\p@}}}}\limits}
+\makeatother
+
+\def\d{\partial}
+\newcommand{\drobb}[2]{\ensuremath{{}^{#1}\!/_{#2}}}
+\def\sigmaf{\sigma_{\!\!{}_f}}
+% \def\>{\Rightarrow}
+\newcommand{\RNumb}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\def\grad{\mathop{\operatorname{g}\!\vec{\operatorname{ra}}\!\operatorname{d}}}
+\def\div{\mathop{\operatorname{div}}}
+\def\Re{\mathop{\operatorname{Re}}}
+\def\Im{\mathop{\operatorname{Im}}}
+\DeclareMathOperator{\bydef}{def}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\GF}{GF}
+\DeclareMathOperator{\Rn}{Rn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Ln}{Ln\,}
+\DeclareMathOperator{\Arcsin}{Arcsin\,}
+\DeclareMathOperator{\Arccos}{Arccos\,}
+\DeclareMathOperator{\Arctg}{Arctg\,}
+\DeclareMathOperator{\Arcctg}{Arcctg\,}
+\DeclareMathOperator{\Arch}{Arch\,}
+\DeclareMathOperator{\Arsh}{Arsh\,}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\arsh}{arsh}
+\DeclareMathOperator{\arch}{arch}
+\DeclareMathOperator{\arth}{arth}
+\DeclareMathOperator{\arcth}{arcth}
+
+\AtBeginDocument{\swapvar{phi}\swapvar{epsilon}\swapvar{nothing}}
+\AtBeginDocument{\swapvar[up]{phi}\swapvar[up]{epsilon}}
+\AtBeginDocument{\swapvar{limsup}\swapvar{liminf}}
