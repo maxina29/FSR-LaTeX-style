@@ -1,4 +1,4 @@
-% FSR STYLE 12/03/2021 14:45
+% FSR STYLE 27/04/2021 13:43
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
@@ -35,6 +35,7 @@ urlcolor=urlcolor, colorlinks=true}
 \let\fsr@date\relax
 \def\fsr@lection@text{Лекция }
 \def\fsr@lectnum{0}
+\let\fsr@newpage\false
 
 \def\hhline{\noindent\rule{\textwidth}{0.5pt}}
 
@@ -199,6 +200,25 @@ urlcolor=urlcolor, colorlinks=true}
         \fi
     }
     \fi
+}
+
+\newcounter{bilet}
+\def\true{1}
+\def\false{0}
+\newcommand\newheader[2][0]{
+\addtocounter{bilet}{1}
+\refstepcounter{glava}
+\setcounter{equation}{0}
+\if\fsr@newpage\true
+\newpage
+\fi
+\def\gg{1}
+	\par\begingroup\normalsize
+		\strut
+			{\Large\textbf{\centering{{\MyColor{#1}\arabic{bilet}. }\normalsize\textbf{#2}}\\
+			}}
+		\strut\nopagebreak
+		\endgroup
 }
 
 \newcommand\subheader[1]{
@@ -379,6 +399,8 @@ urlcolor=urlcolor, colorlinks=true}
 \definecolor{Mycolor1}{HTML}{AC8300}
 \definecolor{LavandaForLavruha}{HTML}{9797E8}
 \definecolor{Gay}{HTML}{0F93FF}
+\definecolor{ForestGreen}{HTML}{228B22}
+\definecolor{Red}{HTML}{FF0000}
 \newcommand{\MyColor}[1]{\def\pertask{#1}\ifx\pertask\zero\color{Red}\else\ifx\pertask\two\color{Mycolor1}\else\ifx\pertask\three\color{LavandaForLavruha}\else\ifx\pertask\four\color{Gay}\else\color{ForestGreen}\fi\fi\fi\fi}
 \newenvironment{task}[1][0]{\large\n\addtocounter{task}{1}\textbf{{\arabic{task}. }}\MyColor{#1}}{\rmfamily\par}
 \newenvironment{hardtask}[1][0]{\large\n\addtocounter{task}{1}\textbf{{\arabic{task}${}^*$. }}\MyColor{#1}}{\upshape\par}
