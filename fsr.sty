@@ -1,4 +1,4 @@
-% FSR STYLE 27/04/2021 13:55
+% FSR STYLE 27/04/2021 14:16
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
@@ -414,6 +414,7 @@ urlcolor=urlcolor, colorlinks=true}
 \newenvironment{nlem}[1][]{\n\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{(#1). }}{\par}
 \newenvironment{lem*}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{{(б/д). }}}{\par}
 \newenvironment{defn}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{defin}{1}\textbf{{Определение \arabic{defin}. }}}{\par}
+\newenvironment{ndefn}[1][]{\n\stepcounter{stat}\addtocounter{defin}{1}\textbf{{Определение \arabic{defin} }}\textit{(#1). }}{\par}
 \newenvironment{prop}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{propos}{1}\textbf{{Утверждение \arabic{propos}. }}}{\par}
 \newenvironment{nprop}[1][]{\n\stepcounter{stat}\addtocounter{propos}{1}\textbf{{Утверждение \arabic{propos} }}\textit{(#1). }}{\par}
 
