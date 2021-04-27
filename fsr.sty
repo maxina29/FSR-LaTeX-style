@@ -1,4 +1,4 @@
-% FSR STYLE 27/04/2021 13:43
+% FSR STYLE 27/04/2021 13:55
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
@@ -276,14 +276,14 @@ urlcolor=urlcolor, colorlinks=true}
 
 \def\true{1}
 \def\false{0}
-\def\enabletransfer{\false}
-\def\standartmargins{\false}
-\def\numeration{\false}
-\def\standartfont{\false}
-\def\presentation{\false}
+\def\fsr@enabletransfer{\false}
+\def\fsr@standartmargins{\false}
+\def\fsr@numeration{\false}
+\def\fsr@standartfont{\false}
+\def\fsr@presentation{\false}
 	
 \def\fsrinitialize{
-    \if\presentation\false
+    \if\fsr@presentation\false
     {
         \AtBeginDocument{\parskip=3.5ex \@plus 1ex \@minus .2ex}
         % \usepackage[dvipsnames]{xcolor}
@@ -320,7 +320,7 @@ urlcolor=urlcolor, colorlinks=true}
         }
     }
     \fi
-    \if\enabletransfer\false
+    \if\fsr@enabletransfer\false
         \binoppenalty=10000
         \relpenalty=10000
     \else
@@ -328,17 +328,17 @@ urlcolor=urlcolor, colorlinks=true}
         \let\true=\true
     }
     \fi
-    \if\standartmargins\false
+    \if\fsr@standartmargins\false
         \geometry{a5paper,portrait,vmargin={2em,2em},hmargin={2em,2em}}
     \else
     {}
     \fi
-    \if\numeration\false
+    \if\fsr@numeration\false
         \pagestyle{empty}
     \else
     {}
     \fi
-    \if\standartfont\false
+    \if\fsr@standartfont\false
         \usepackage[charter]{mathdesign}
         \usepackage{XCharter}
     \else
