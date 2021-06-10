@@ -1,4 +1,4 @@
-% FSR STYLE 27/04/2021 14:16
+% FSR STYLE 10/06/2021 15:28
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
@@ -287,6 +287,7 @@ urlcolor=urlcolor, colorlinks=true}
     {
         \AtBeginDocument{\parskip=3.5ex \@plus 1ex \@minus .2ex}
         % \usepackage[dvipsnames]{xcolor}
+        \AtBeginDocument{
         \newcommand{\qedsymbol}{\ensuremath{\blacksquare}}
         \newenvironment{Theorem}{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor}. }}}{\par}
         \newenvironment{Lemma}{\n\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma}. }}}{\par}
@@ -297,7 +298,7 @@ urlcolor=urlcolor, colorlinks=true}
         \newenvironment{solution}{\n\textsc{Решение.}}{\hspace{\stretch{1}}\qedsymbol\n}
         \newenvironment{example}{\n\textsc{Пример.}}{\hspace{\stretch{1}}%\qedsymbol
         \n}
-        \newenvironment{note}{\n\addtocounter{notee}{1}\textbf{{Замечание \arabic{notee}. }}}{\par}
+        \newenvironment{note}{\n\addtocounter{notee}{1}\textbf{{Замечание \arabic{notee}. }}}{\par}}
     }
     \else
     {
