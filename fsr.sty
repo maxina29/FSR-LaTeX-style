@@ -1,4 +1,4 @@
-% FSR STYLE 13/06/2021 11:31
+% FSR STYLE 30/06/2021 10:17
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
@@ -32,6 +32,7 @@ urlcolor=urlcolor, colorlinks=true}
 \def\fsr@texedby@text{\TeX ed by }
 \def\fsr@texedby{$\nothing$}
 \let\fsr@title\relax
+\let\fsr@titleshort\relax
 \let\fsr@date\relax
 \def\fsr@lection@text{Лекция }
 \def\fsr@lectnum{0}
@@ -281,6 +282,10 @@ urlcolor=urlcolor, colorlinks=true}
 \def\fsr@numeration{\false}
 \def\fsr@standartfont{\false}
 \def\fsr@presentation{\false}
+\def\fsr@presentation@theme{Warsaw}
+\def\fsr@presentation@colortheme{wolverine}
+\def\fsr@institute@number{\inst{1}}
+\def\fsr@fsrlogo{\includegraphics[height=2cm]{FSR_Logo_012.png}}
 	
 \def\fsrinitialize{
     \if\fsr@presentation\false
@@ -303,14 +308,15 @@ urlcolor=urlcolor, colorlinks=true}
     \else
     {
         \AtBeginDocument{
-        \usetheme{Warsaw}
-        \usecolortheme{wolverine}
-        \title{\fsr@title}
+        \usetheme{\fsr@presentation@theme}
+        \usecolortheme{\fsr@presentation@colortheme}
+
+        \title[\fsr@titleshort]{\fsr@title}
         \author[\fsr@texedbyshort]{\fsr@texedby}
         \subtitle{\fsr@subtitle}
-        \institute[\fsr@instituteshort]{\inst{1}\fsr@institute}
+        \institute[\fsr@instituteshort]{\fsr@institute@number\fsr@institute}
         \date[\fsr@shortdate]{\fsr@date}
-        \logo{\includegraphics[height=2cm]{FSR_Logo_012.png}}
+        \logo{\fsr@fsrlogo}
         \AtBeginSection[]
         {
           \begin{frame}
