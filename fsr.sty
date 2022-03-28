@@ -1,4 +1,4 @@
-% FSR STYLE 28/03/2022 12:25
+% FSR STYLE 28/03/2022 18:49
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
@@ -374,6 +374,8 @@ urlcolor=urlcolor, colorlinks=true}
 \newenvironment{Theorem*}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{{(б/д). }}}{\par}
 \newenvironment{namedTheorem}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{(#1). }}{\par}
 \newenvironment{namedTheorem*}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{{Теорема \arabic{theor} }}\textit{(#1) \textit{\texttt{(б/д). }}}}{\par}
+
+\newenvironment{namedExample}[1][]{\n\textbf{{Пример }}\textit{(#1). }}{\par}
 
 \newenvironment{namedLemma}[1][]{\n\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{(#1). }}{\par}
 \newenvironment{Lemma*}[1][0pt]{\n\hspace{#1}\stepcounter{stat}\addtocounter{lemma}{1}\textbf{{Лемма \arabic{lemma} }}\textit{{(б/д). }}}{\par}
