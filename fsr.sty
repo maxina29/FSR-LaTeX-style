@@ -1,4 +1,4 @@
-% FSR STYLE 30/06/2021 10:17
+% FSR STYLE 28/03/2022 12:25
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
@@ -286,11 +286,12 @@ urlcolor=urlcolor, colorlinks=true}
 \def\fsr@presentation@colortheme{wolverine}
 \def\fsr@institute@number{\inst{1}}
 \def\fsr@fsrlogo{\includegraphics[height=2cm]{FSR_Logo_012.png}}
+\def\fsr@parskip{3.5ex \@plus 1ex \@minus .2ex}
 	
 \def\fsrinitialize{
     \if\fsr@presentation\false
     {
-        \AtBeginDocument{\parskip=3.5ex \@plus 1ex \@minus .2ex}
+        \AtBeginDocument{\parskip=\fsr@parskip}
         % \usepackage[dvipsnames]{xcolor}
         \AtBeginDocument{
         \newcommand{\qedsymbol}{\ensuremath{\blacksquare}}
@@ -346,7 +347,7 @@ urlcolor=urlcolor, colorlinks=true}
     {}
     \fi
     \if\fsr@standartfont\false
-        \usepackage[charter]{mathdesign}
+        \usepackage[charter,cal=cmcal]{mathdesign}
         \usepackage{XCharter}
     \else
         \usepackage{amssymb}
